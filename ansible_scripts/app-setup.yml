@@ -1,0 +1,42 @@
+---
+- hosts: tc-app-1
+  become: yes
+  become_method: sudo
+  tasks:
+  - name: ensure python3 and pip is installed
+    apt: pkg=nginx state=present update_cache=yes
+    apt: pkg=python3-pip state=present update_cache=yes
+  - pip:
+    name: uwsgi
+  - pip:
+    name: flask
+  - pip:
+    name: pymongo
+  - git:
+    repo: 'https://foosball.example.org/path/to/repo.git'
+    dest: /home/ubuntu
+
+# TODO must add the config files
+
+
+# make sure uwsgi and flask are installed
+  # sudo pip3 install uwsgi flask
+
+# put the folder with the flask files in the home folder
+  # clone from https://github.com/iopoi/twitter-clone.git
+# modify the uwsgi config files
+
+# launch uwsgi
+  # uwsgi --socket 127.0.0.1:5000 --protocol=http -2 wsgi:appls
+  # uwsgi --socket 0.0.0.0:5000 --protocol=http -w wsgi:app --processes 4 --threads 2
+
+
+
+
+# paths to wsgi and config files
+  # /etc/nginx/sites-available/default
+  # /home/ubuntu/twitter-clone/flask_app/wsgi.py
+  #  
+
+# restart nginx
+

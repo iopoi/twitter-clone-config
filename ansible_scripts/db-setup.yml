@@ -1,0 +1,28 @@
+---
+- hosts: tc-db-1
+  become: yes
+  become_method: sudo
+  tasks:
+   - name: add MongoDB key
+     apt_key: keyserver=keyserver.ubuntu.com id=0C49F3730359A14518585931BC711F9BA15703C6
+   - name: add MongoDB repo
+     apt_repository: repo='deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse' state=present
+   - name: ensure MongoDB is installed
+     apt: pkg=mongodb-org state=present update_cache=yes
+
+# http://docs.ansible.com/ansible/apt_module.html
+# http://docs.ansible.com/ansible/apt_key_module.html
+# http://docs.ansible.com/ansible/apt_repository_module.html
+
+
+# make sure to comment the binded ip
+# restart mongo
+  # service mongod restart
+
+# paths to mongo and config files
+  # /etc/mongod.conf
+  #  
+
+# restart mongo
+
+

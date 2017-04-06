@@ -1,0 +1,15 @@
+---
+- hosts: tc-loadbalancer-1
+  become: yes
+  become_method: sudo
+  tasks:
+  - name: ensure nginx is installed
+    apt: pkg=nginx state=present update_cache=yes
+
+# add and configure nginx files to loadbalancer
+  # modify /etc/nginx/site-avalible/default
+    # change the  location / { proxy_pass http://loadbalancer; }
+  # modify /etc/nginx/nginx.conf
+    # add to the file in the http section  upstream loadbalancer { server 192.168.1.34; }
+# restart nginx
+
